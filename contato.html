@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fale Conosco – MIND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>  <!-- Navegação principal -->
+  <nav>
+    <div class="logo">
+      <a href="index.html"><img src="assets/img/logo.png" alt="Logo MIND" loading="lazy" /></a>
+    </div>
+    
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quemsomos.html">Quem Somos</a></li>
+      <li><a href="catalogo.html">Catálogo MIND</a></li>
+      <li><a href="resultados.html">Resultados Reais</a></li>
+      <li><a href="planos.html">Planos & Soluções</a></li>
+      <li><a href="experiencia.html">Experiência IA</a></li>
+      <li><a href="contato.html">Fale Conosco</a></li>
+      <li><a href="acesso.html">Acesso Restrito</a></li>
+    </ul>
+    
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho da página -->
+  <section class="hero" style="background-image: url('assets/banner_header.png');">
+    <div class="hero-content">
+      <h1>Fale Conosco</h1>
+      <p>Entre em contato usando o formulário abaixo.</p>
+      <p>Não anexe nenhum arquivo</p>
+    </div>
+  </section>
+
+  <!-- Conteúdo de contato -->
+  <section class="content">
+    <h2>Envie sua mensagem</h2>
+    <form action="mailto:marquesintdesenvolvimento@gmail.com" method="POST" enctype="text/plain">
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">E‑mail</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Mensagem</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p style="text-align:center; margin-top:20px; color:#94a3b8;">
+      Ou envie um e‑mail diretamente para <a href="mailto:marquesintdesenvolvimento@gmail.com">marquesintdesenvolvimento@gmail.com</a>.
+    </p>
+  </section>
+
+  <!-- Rodapé -->
+<footer>
+  <div style="text-align: center; padding: 24px 0; color: #94a3b8; font-size: 0.875rem;">
+    <p>&copy; 2025 MIND – Marques Inteligência de Desenvolvimento</p>
+    <p>IA com propósito, ética e acessibilidade. Idealizado e desenvolvido por Samuel Marques.</p>
+    <p>
+      <a href="mailto:marquesintdesenvolvimento@gmail.com">marquesintdesenvolvimento@gmail.com</a> | 
+      <a href="https://www.instagram.com/mind_aisup" target="_blank">Instagram</a>
+      <script src="js/banner_animado.js"></script>
+    </p>
+  </div>
+</footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

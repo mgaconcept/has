@@ -1,0 +1,626 @@
+/*
+ * MIND Website Stylesheet
+ *
+ * Este arquivo contém estilos base para todas as páginas do site MIND.
+ * A paleta de cores utiliza gradientes em azul, roxo e rosa, criando uma
+ * atmosfera futurista.  O layout foi desenvolvido com o princípio mobile‑first
+ * e responsividade, conforme sugerido pelas boas práticas de design
+ * multippage【184809447738958†L74-L76】【184809447738958†L110-L114】.
+ */
+
+:root {
+  /* Cores principais */
+  --primary-gradient: linear-gradient(135deg, #005eff 0%, #ffd500 100%);
+  --bg-color: #111111;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --text-color: #f5f5f5;
+  --accent: #005eff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Navegação */
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+nav .logo img {
+  width: 48px;
+  height: 48px;
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+nav .nav-links li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+nav .nav-links li a:hover {
+  background-color: rgba(255, 213, 0, 0.1);
+}
+
+/* Botão hamburguer para dispositivos móveis */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 2px;
+  background-color: var(--text-color);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estilo para a seção Hero */
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px;
+  color: #ffffff;
+  /* Necessário para conter o canvas animado do banner futurista */
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  color: #cccccc;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-image: var(--primary-gradient);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Seções de conteúdo */
+.features,
+.content {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features h2,
+.content h1,
+.content h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.card-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(0,94,255,0.06);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,213,0,0.4);
+  box-shadow:
+    0 0 12px rgba(255,213,0,0.25),
+    0 0 32px rgba(0,94,255,0.25),
+    0 0 48px rgba(255,213,0,0.15);
+}
+/*secao de resultados */
+.card.his {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px;
+   box-shadow: 0 0 18px rgba(255, 213, 0, 0.06);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border 0.3s ease;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  text-align: left;
+  flex-wrap: wrap; /* deixa responsivo em telas menores */
+}
+
+.card.his:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 28px rgba(255, 213, 0, 0.2);
+  border: 1px solid rgba(255, 213, 0, 0.2);
+}
+
+.card.his .icone {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.card.his .conteudo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card.his .tags {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card.his .tag {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f5f5f5;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.card.his .cta-button {
+  margin-top: 16px;
+  align-self: flex-start;
+  background-color: #ffd500;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.card.his .cta-button:hover {
+  background-color: #e6be00;
+}
+
+/* Botão dentro dos cards */
+.cta-button {
+  display: inline-block;
+  margin-top: 16px;
+  background: linear-gradient(135deg, #005eff, #ffd500);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 8px rgba(0,94,255,0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, #ffd500, #005eff);
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255,213,0,0.4), 0 0 24px rgba(0,94,255,0.4);
+}
+
+.card img {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #cccccc;
+}
+
+/* Formulário de contato */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+form input,
+form textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #333333;
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-image: var(--primary-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(17, 17, 17, 0.8);
+  padding: 24px 0;
+  text-align: center;
+  color: #cccccc;
+  font-size: 0.875rem;
+}
+
+footer a {
+  color: #ffd500;
+  text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  nav .nav-links {
+    position: fixed;
+    top: 64px;
+    right: 16px;
+    z-index: 9999;
+    flex-direction: column;
+    background-color: rgba(15, 23, 42, 0.95);
+    padding: 16px;
+    border-radius: 8px;
+    width: 200px;
+    display: none;
+  }
+
+  nav .nav-links.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+.card-grid a.card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.card-grid a.card:hover {
+  transform: scale(1.03);
+}
+}
+
+/* ------------------------------------------------------------------
+ * Elementos de catálogos e tabelas
+ *
+ * Define estilos para tags dentro de cards e para a tabela comparativa
+ * de planos. As tags são exibidas como pequenos pílulos coloridos e a
+ * tabela utiliza cores suaves e linhas discretas para manter a
+ * legibilidade e a estética futurista da MIND.
+ */
+
+/* Tags de catálogo */
+.tags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  backdrop-filter: blur(4px);
+}
+
+/* Tabela comparativa de planos */
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.plan-table th,
+.plan-table td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.plan-table th {
+    background-color: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+}
+
+.plan-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.plan-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+/* Ícones de check e cross nas tabelas */
+.check {
+  color: #ffd500; /* verde suave */
+  font-weight: bold;
+}
+
+.cross {
+  color: ##ff4d4d; /* vermelho suave */
+  font-weight: bold;
+}
+
+/* ------------------------------------------------------------------
+ * Tipografia e espaçamentos
+ *
+ * Ajusta a hierarquia visual e legibilidade utilizando a fonte Poppins,
+ * com tamanhos responsivos e margens consistentes. Essa seção foi
+ * adicionada na Fase 3 para garantir que títulos e parágrafos se
+ * adaptem bem a diferentes tamanhos de tela.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 2.75rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Fase 9 – Microanimações e Transições
+ *
+ * Esta seção adiciona pequenos efeitos visuais para melhorar a experiência
+ * do usuário sem alterar o conteúdo textual. Inclui animações em links
+ * de navegação, botões, tags e ícones nos cards. As transições utilizam
+ * a paleta de cores MIND e mantêm o ambiente futurista do site.
+ */
+
+/* Underline animado nos links da navegação */
+nav .nav-links li a {
+  position: relative;
+  overflow: hidden;
+}
+nav .nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-image: var(--primary-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+nav .nav-links li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Efeito de realce em links de rodapé */
+footer a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+footer a:hover {
+  color: #ffe970; /* tom claro da paleta para hover */
+}
+
+/* Animação de destaque em tags */
+.tag {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.tag:hover {
+  background-color: rgba(0, 94, 255, 0.3);
+  color: #ffd500;
+}
+
+/* Pulso e rotação suave em ícones SVG dentro de cards ao passar o mouse */
+.card svg {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.card:hover svg {
+  transform: rotate(5deg) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255, 213, 0, 0.6));
+}
+
+/* Sombra pulsante nos botões de CTA */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+}
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  width: 50%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(45deg);
+  transition: transform 0.5s ease;
+}
+.cta-button:hover::after {
+  transform: translateX(300%) rotate(45deg);
+}
+
+/* Suave escala nos campos de formulário ao receber foco */
+form input:focus,
+form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 94, 255, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Animação de aparecimento suave para elementos observados */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-grid .card.his {
+  grid-column: 1 / -1; /* Faz o card ocupar toda a linha da grid */
+}
+.card.destaque-amarelo {
+   background-color: #1a1a1a;
+  border-left: 8px solid #ffd500;
+  box-shadow: 0 0 14px rgba(255, 213, 0, 0.25);
+}
+
+.card.destaque-amarelo h3 {
+  color: #ffd500;
+}
+
+.card.destaque-amarelo .tags span {
+  background: linear-gradient(145deg, #ffd500, #005eff);
+  color: #0d0d0d;
+  font-weight: 600;
+  border-radius: 20px;
+}

@@ -1,0 +1,312 @@
+/*
+ * MIND Website Stylesheet
+ *
+ * Este arquivo contém estilos base para todas as páginas do site MIND.
+ * A paleta de cores utiliza gradientes em azul, roxo e rosa, criando uma
+ * atmosfera futurista.  O layout foi desenvolvido com o princípio mobile‑first
+ * e responsividade, conforme sugerido pelas boas práticas de design
+ * multippage【184809447738958†L74-L76】【184809447738958†L110-L114】.
+ */
+
+:root {
+  /* Cores principais */
+  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #9333ea 50%, #ec4899 100%);
+  --bg-color: #0f172a;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-color: #f1f5f9;
+  --accent: #3b82f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Navegação */
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+nav .logo img {
+  width: 48px;
+  height: 48px;
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+nav .nav-links li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+nav .nav-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botão hamburguer para dispositivos móveis */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 2px;
+  background-color: var(--text-color);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estilo para a seção Hero */
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px;
+  color: #ffffff;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  color: #e2e8f0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-image: var(--primary-gradient);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Seções de conteúdo */
+.features,
+.content {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features h2,
+.content h1,
+.content h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #dbeafe;
+}
+
+.card-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(0,209,255,0.06);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,209,255,0.4);
+  box-shadow:
+    0 0 12px rgba(0,209,255,0.25),
+    0 0 32px rgba(108,61,219,0.25),
+    0 0 48px rgba(255,79,227,0.15);
+}
+
+/* Botão dentro dos cards */
+.cta-button {
+  display: inline-block;
+  margin-top: 16px;
+  background: linear-gradient(135deg, #6c3ddb, #00d1ff);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 8px rgba(108,61,219,0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, #ff4fe3, #00d1ff);
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255,79,227,0.5), 0 0 24px rgba(0,209,255,0.4);
+}
+
+.card img {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+
+/* Formulário de contato */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+form input,
+form textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-image: var(--primary-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(15, 23, 42, 0.8);
+  padding: 24px 0;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+footer a {
+  color: #a78bfa;
+  text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    right: 16px;
+    top: 64px;
+    flex-direction: column;
+    background-color: rgba(15, 23, 42, 0.95);
+    padding: 16px;
+    border-radius: 8px;
+    display: none;
+    width: 200px;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+.card-grid a.card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.card-grid a.card:hover {
+  transform: scale(1.03);
+}
+}
