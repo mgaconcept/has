@@ -639,6 +639,34 @@ img.png-icon {
 /* Quando o SVG já estiver inline, garantimos herdar a cor do texto */
 .icon-svg {
   fill: currentColor;
+
+  .video-section {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.video-section h2 {
+  margin-bottom: 1rem;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 960px;  /* largura máxima */
+  margin: 0 auto;    /* centraliza */
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 }
 
 /* Cores prontas por data-atributo (ajuste à sua paleta) */
