@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fale Conosco – HAS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>  
+<!-- Navegação principal -->
+    <nav>
+      <div class="logo">
+      <a href="index.html"><img src="assets/img/logo.png" alt="Logo HAS" loading="lazy" /></a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="nossaempresa.html">Quem Somos</a></li>
+        <li><a href="contato.html">Fale Conosco</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+  <!-- Cabeçalho da página -->
+  <section class="hero" style="background-image: url('assets/banner_header.png');">
+    <div class="hero-content">
+      <h1>Fale Conosco</h1>
+      <p>Entre em contato usando o formulário abaixo.</p>
+    </div>
+  </section>
+
+  <!-- Conteúdo de contato -->
+  <section class="content">
+    <h2>Envie sua mensagem</h2>
+    <form action="mailto:hasprodutosautomotivos@gmail.com" method="POST" enctype="text/plain">
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">E‑mail</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Mensagem</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p style="text-align:center; margin-top:20px; color:#94a3b8;">
+      Ou envie um e‑mail diretamente para <a href="mailto:hasprodutosautomotivos@gmail.com">hasprodutosautomotivos@gmail.com</a>.
+    </p>
+  </section>
+
+  <!-- Rodapé -->
+    <footer>
+      <div style="text-align: center; padding: 24px 0; color: #94a3b8; font-size: 0.875rem;">
+        <p>&copy; 2025 HAS – Produtos para Estética Automotiva</p>
+        <p>Da lavagem à vitrificação, temos a solução! Desenvolvido por MGA Concept.</p>
+        <p>
+          <a href="mailto:hasprodutosautomotivos@gmail.com">hasprodutosautomotivos@gmail.com</a> |
+          <a href="https://www.instagram.com/hasprodutosautomotivos/" target="_blank">Instagram</a> |
+          <a href="wa.me/5543984510877" target="_blank">WhatsApp</a>
+        </p>
+      </div>
+    </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
