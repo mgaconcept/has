@@ -284,9 +284,9 @@ nav .nav-links li a:hover {
 }
 
 .card img {
-  width: 72px;
-  height: 72px;
-  margin-bottom: 20px;
+  width: 512px;
+  height: 512px;
+  margin-bottom: 8px;
 }
 
 .card h3 {
