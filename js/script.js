@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 🎨 VARIAÇÃO DINÂMICA DE FUNDO DA HERO
   const imagensHero = [
-    "banner_header.png",
-    "banner_header2.png",
-    "banner_header3.png",
-    "banner_header4.png"
+    "banner_header.webp",
+    "banner_header2.webp",
+    "banner_header3.webp",
+    "banner_header4.webp",
+    "banner_header5.webp",
+    "banner_header6.webp"
   ];
 
   const escolhida = imagensHero[Math.floor(Math.random() * imagensHero.length)];
