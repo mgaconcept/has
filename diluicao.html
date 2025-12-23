@@ -49,7 +49,7 @@
         <h1>Calculadora de Diluição</h1>
         <p>
           Coloque a proporção <strong>1:X</strong> e descubra na hora quantos <strong>ml de produto</strong> e <strong>ml de água</strong>
-          você precisa — sem sofrer com regra de três no meio da lavagem 😄
+          você precisa — sem sofrer com regra de três no meio da lavagem
         </p>
         <a href="#calc" class="cta-button">Abrir calculadora</a>
       </div>
@@ -89,17 +89,18 @@
                 inputmode="numeric"
                 autocomplete="off"
                 placeholder="Ex: 1:60"
-                value="1:60"
+                value=""
                 style="flex: 1; min-width: 220px; padding: 12px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.25); color: #fff;"
               />
 
               <!-- Presets -->
               <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                <label for="ratioInput" style="font-weight:600;">Proporções pré definida</label>
                 <button type="button" class="cta-button chip" data-r="1:10" style="border:none; cursor:pointer; padding:8px 12px;">1:10</button>
-                <button type="button" class="cta-button chip" data-r="1:50" style="border:none; cursor:pointer; padding:8px 12px;">1:50</button>
+                <button type="button" class="cta-button chip" data-r="1:30" style="border:none; cursor:pointer; padding:8px 12px;">1:30</button>
                 <button type="button" class="cta-button chip" data-r="1:60" style="border:none; cursor:pointer; padding:8px 12px;">1:60</button>
                 <button type="button" class="cta-button chip" data-r="1:100" style="border:none; cursor:pointer; padding:8px 12px;">1:100</button>
-                <button type="button" class="cta-button chip" data-r="1:150" style="border:none; cursor:pointer; padding:8px 12px;">1:150</button>
+                <button type="button" class="cta-button chip" data-r="1:500" style="border:none; cursor:pointer; padding:8px 12px;">1:500</button>
               </div>
             </div>
           </div>
