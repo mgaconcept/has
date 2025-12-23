@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-59G6HB3WTV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-59G6HB3WTV');
+  </script>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAS - Calculadora de Diluição</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Calculadora de diluição HAS: descubra a quantidade de produto e água para fechar a proporção 1:X em ml." />
+  </head>
+
+  <body>
+    <!-- Navegação principal -->
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img src="assets/img/logo.png" alt="Logo HAS" loading="lazy" /></a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="marcas.html">Marcas</a></li>
+        <li><a href="nossaempresa.html">Quem Somos</a></li>
+        <li><a href="contato.html">Fale Conosco</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Calculadora de Diluição</h1>
+        <p>
+          Coloque a proporção <strong>1:X</strong> e descubra na hora quantos <strong>ml de produto</strong> e <strong>ml de água</strong>
+          você precisa — sem sofrer com regra de três no meio da lavagem 😄
+        </p>
+        <a href="#calc" class="cta-button">Abrir calculadora</a>
+      </div>
+    </section>
+
+    <!-- Calculadora -->
+    <section class="content" id="calc">
+      <h2>Calcular proporção</h2>
+
+      <div class="card-grid">
+        <div class="card" style="cursor: default;">
+          <h3 style="margin-bottom: 8px;">Informe os dados</h3>
+          <p style="margin-top: 0;">
+            A proporção é sempre <strong>produto:água</strong>. Ex.: <strong>1:60</strong> significa 1 parte de produto para 60 partes de água.
+          </p>
+
+          <!-- Toggle de modo -->
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin: 16px 0;">
+            <button id="btnModoAgua" type="button" class="cta-button"
+              style="border:none; cursor:pointer; padding: 10px 14px;">
+              Tenho água (quero saber o produto)
+            </button>
+
+            <button id="btnModoProduto" type="button" class="cta-button"
+              style="border:none; cursor:pointer; padding: 10px 14px; opacity:.75;">
+              Tenho produto (quero saber a água)
+            </button>
+          </div>
+
+          <!-- Proporção -->
+          <div style="display:grid; gap:10px; margin-bottom: 14px;">
+            <label for="ratioInput" style="font-weight:600;">Proporção (1:X)</label>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <input
+                id="ratioInput"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="Ex: 1:60"
+                value="1:60"
+                style="flex: 1; min-width: 220px; padding: 12px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.25); color: #fff;"
+              />
+
+              <!-- Presets -->
+              <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                <button type="button" class="cta-button chip" data-r="1:10" style="border:none; cursor:pointer; padding:8px 12px;">1:10</button>
+                <button type="button" class="cta-button chip" data-r="1:50" style="border:none; cursor:pointer; padding:8px 12px;">1:50</button>
+                <button type="button" class="cta-button chip" data-r="1:60" style="border:none; cursor:pointer; padding:8px 12px;">1:60</button>
+                <button type="button" class="cta-button chip" data-r="1:100" style="border:none; cursor:pointer; padding:8px 12px;">1:100</button>
+                <button type="button" class="cta-button chip" data-r="1:150" style="border:none; cursor:pointer; padding:8px 12px;">1:150</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODO 1: água -->
+          <div id="modoAgua" style="display:grid; gap:12px; margin-top: 10px;">
+            <div style="display:grid; gap:8px;">
+              <label for="waterValue" style="font-weight:600;">Volume de água</label>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <input
+                  id="waterValue"
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  placeholder="Ex: 1"
+                  value="1"
+                  style="flex: 1; min-width: 220px; padding: 12px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.25); color: #fff;"
+                />
+                <select
+                  id="waterUnit"
+                  style="padding: 12px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.25); color: #fff;"
+                >
+                  <option value="L">L</option>
+                  <option value="ml">ml</option>
+                </select>
+              </div>
+              <p style="margin: 0; color:#94a3b8; font-size: .92rem;">
+                Ex.: 1 L de água com 1:60 ⇒ produto = água/60.
+              </p>
+            </div>
+
+            <button id="calcAgua" type="button" class="cta-button"
+              style="border:none; cursor:pointer; padding: 12px 16px;">
+              Calcular
+            </button>
+          </div>
+
+          <!-- MODO 2: produto -->
+          <div id="modoProduto" style="display:none; gap:12px; margin-top: 10px;">
+            <div style="display:grid; gap:8px;">
+              <label for="prodValue" style="font-weight:600;">Volume de produto</label>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <input
+                  id="prodValue"
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  placeholder="Ex: 50"
+                  value="50"
+                  style="flex: 1; min-width: 220px; padding: 12px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.25); color: #fff;"
+                />
+                <select
+                  id="prodUnit"
+                  style="padding: 12px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.25); color: #fff;"
+                >
+                  <option value="ml">ml</option>
+                  <option value="L">L</option>
+                </select>
+              </div>
+              <p style="margin: 0; color:#94a3b8; font-size: .92rem;">
+                Ex.: 50 ml de produto com 1:60 ⇒ água = produto×60.
+              </p>
+            </div>
+
+            <button id="calcProduto" type="button" class="cta-button"
+              style="border:none; cursor:pointer; padding: 12px 16px;">
+              Calcular
+            </button>
+          </div>
+
+          <!-- Saída -->
+          <div
+            id="output"
+            role="status"
+            aria-live="polite"
+            style="margin-top: 16px; padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.18);"
+          >
+            <div style="color:#94a3b8; font-size:.92rem;">Resultado</div>
+            <div id="outMain" style="font-size: 1.05rem; margin-top: 6px;">—</div>
+            <div id="outExtra" style="color:#94a3b8; margin-top: 6px; font-size:.92rem;">
+              Dica: use o formato <strong>1:60</strong> e escolha L/ml.
+            </div>
+          </div>
+
+          <p id="err" style="margin: 12px 0 0; color: #ff6b6b; display:none;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+      <div style="text-align: center; padding: 24px 0; color: #94a3b8; font-size: 0.875rem;">
+        <p>&copy; 2025 HAS – Produtos para Estética Automotiva</p>
+        <p>Da lavagem à vitrificação, temos a solução! Desenvolvido por MGA Concept.</p>
+        <p>
+          <a href="mailto:hasprodutosautomotivos@gmail.com">hasprodutosautomotivos@gmail.com</a> |
+          <a href="https://www.instagram.com/hasprodutosautomotivos/" target="_blank">Instagram</a> |
+          <a href="https://api.whatsapp.com/send/?phone=5543984510877&text&type=phone_number&app_absent=0" target="_blank">WhatsApp</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/banner_animado.js"></script>
+
+    <script>
+      // Smooth scroll (mantém teu padrão)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // ===== Calculadora =====
+      const $ = (id) => document.getElementById(id);
+
+      function parseRatio(raw) {
+        // Exige 1:X
+        const s = String(raw || "").trim().replace(",", ".");
+        const m = s.match(/^1\s*[:\/]\s*([0-9]+(\.[0-9]+)?)$/);
+        if (!m) return null;
+        const x = Number(m[1]);
+        if (!Number.isFinite(x) || x <= 0) return null;
+        return x;
+      }
+
+      function toMl(valueStr, unit) {
+        const v = Number(String(valueStr || "").trim().replace(",", "."));
+        if (!Number.isFinite(v) || v <= 0) return null;
+        return unit === "L" ? v * 1000 : v;
+      }
+
+      function fmtMl(n) {
+        const rounded = Math.round(n * 10) / 10;
+        return (Number.isInteger(rounded) ? rounded.toFixed(0) : rounded.toFixed(1)) + " ml";
+      }
+
+      function showError(msg) {
+        const el = $("err");
+        el.textContent = msg;
+        el.style.display = "block";
+      }
+
+      function clearError() {
+        const el = $("err");
+        el.textContent = "";
+        el.style.display = "none";
+      }
+
+      // UI Mode
+      const btnModoAgua = $("btnModoAgua");
+      const btnModoProduto = $("btnModoProduto");
+      const modoAgua = $("modoAgua");
+      const modoProduto = $("modoProduto");
+
+      function setMode(mode) {
+        const isAgua = mode === "agua";
+        modoAgua.style.display = isAgua ? "grid" : "none";
+        modoProduto.style.display = isAgua ? "none" : "grid";
+        btnModoAgua.style.opacity = isAgua ? "1" : ".75";
+        btnModoProduto.style.opacity = isAgua ? ".75" : "1";
+
+        clearError();
+        $("outMain").textContent = "—";
+        $("outExtra").innerHTML = 'Dica: use o formato <strong>1:60</strong> e escolha L/ml.';
+      }
+
+      btnModoAgua.addEventListener("click", () => setMode("agua"));
+      btnModoProduto.addEventListener("click", () => setMode("produto"));
+
+      // Presets
+      document.querySelectorAll("[data-r]").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          $("ratioInput").value = chip.getAttribute("data-r");
+          clearError();
+        });
+      });
+
+      // Calcular: tenho água -> produto
+      $("calcAgua").addEventListener("click", () => {
+        clearError();
+
+        const x = parseRatio($("ratioInput").value);
+        if (!x) return showError("Proporção inválida. Use no formato 1:60 (produto:água).");
+
+        const waterMl = toMl($("waterValue").value, $("waterUnit").value);
+        if (!waterMl) return showError("Volume de água inválido. Use um número maior que zero.");
+
+        const prodMl = waterMl / x;
+        const totalMl = waterMl + prodMl;
+
+        $("outMain").innerHTML =
+          `<strong>Produto:</strong> ${fmtMl(prodMl)} &nbsp;|&nbsp; <strong>Água:</strong> ${fmtMl(waterMl)}`;
+        $("outExtra").textContent =
+          `Total da mistura: ${fmtMl(totalMl)} (fechando 1:${x} produto:água)`;
+      });
+
+      // Calcular: tenho produto -> água
+      $("calcProduto").addEventListener("click", () => {
+        clearError();
+
+        const x = parseRatio($("ratioInput").value);
+        if (!x) return showError("Proporção inválida. Use no formato 1:60 (produto:água).");
+
+        const prodMl = toMl($("prodValue").value, $("prodUnit").value);
+        if (!prodMl) return showError("Volume de produto inválido. Use um número maior que zero.");
+
+        const waterMl = prodMl * x;
+        const totalMl = waterMl + prodMl;
+
+        $("outMain").innerHTML =
+          `<strong>Produto:</strong> ${fmtMl(prodMl)} &nbsp;|&nbsp; <strong>Água:</strong> ${fmtMl(waterMl)}`;
+        $("outExtra").textContent =
+          `Total da mistura: ${fmtMl(totalMl)} (fechando 1:${x} produto:água)`;
+      });
+
+      // Enter friendly: Enter calcula o modo ativo
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        const isAgua = modoAgua.style.display !== "none";
+        if (isAgua) $("calcAgua").click();
+        else $("calcProduto").click();
+      });
+    </script>
+  </body>
+</html>
+
