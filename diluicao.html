@@ -206,7 +206,6 @@
     <!-- Scripts -->
     <script src="js/script.js"></script>
     <script src="js/banner_animado.js"></script>
-
     <script>
       // Smooth scroll (mantém teu padrão)
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -241,6 +240,31 @@
         return (Number.isInteger(rounded) ? rounded.toFixed(0) : rounded.toFixed(1)) + " ml";
       }
 
+      function trackCalculatorExecute(mode, ratioX, volumeMl) {
+  if (typeof gtag !== "function") return;
+
+  // "ratio_band" agrupa e evita virar bagunça de números no GA4
+  const ratio_band =
+    ratioX <= 10 ? "1:1-10" :
+    ratioX <= 30 ? "1:11-30" :
+    ratioX <= 60 ? "1:31-60" :
+    ratioX <= 100 ? "1:61-100" :
+    ratioX <= 500 ? "1:101-500" : "1:500+";
+
+  gtag("event", "calculator_execute", {
+    tool: "diluicao",
+    mode: mode,                 // "agua_para_produto" ou "produto_para_agua"
+    ratio_x: Math.round(ratioX),// opcional (se quiser exato)
+    ratio_band: ratio_band,
+    volume_ml_band:
+      volumeMl < 500 ? "<500ml" :
+      volumeMl < 1000 ? "500-999ml" :
+      volumeMl < 5000 ? "1-4.9L" :
+      volumeMl < 20000 ? "5-19.9L" : "20L+",
+    page: window.location.pathname
+  });
+}
+      
       function showError(msg) {
         const el = $("err");
         el.textContent = msg;
@@ -299,6 +323,7 @@
           `<strong>Produto:</strong> ${fmtMl(prodMl)} &nbsp;|&nbsp; <strong>Água:</strong> ${fmtMl(waterMl)}`;
         $("outExtra").textContent =
           `Total da mistura: ${fmtMl(totalMl)} (fechando 1:${x} produto:água)`;
+        trackCalculatorExecute("agua_para_produto", x, waterMl);
       });
 
       // Calcular: tenho produto -> água
@@ -318,6 +343,7 @@
           `<strong>Produto:</strong> ${fmtMl(prodMl)} &nbsp;|&nbsp; <strong>Água:</strong> ${fmtMl(waterMl)}`;
         $("outExtra").textContent =
           `Total da mistura: ${fmtMl(totalMl)} (fechando 1:${x} produto:água)`;
+        trackCalculatorExecute("produto_para_agua", x, prodMl);
       });
 
       // Enter friendly: Enter calcula o modo ativo
