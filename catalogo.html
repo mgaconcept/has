@@ -292,12 +292,37 @@ const IMAGE_BASE_PATH = "/assets/produtos/imagens";
     return ""; // sem imagem encontrada
   }
 
-  function buildMLUrl(item) {
-    // se seu JSON já tem "url", usa ele. Se não, monta.
-    if (item.url && String(item.url).trim()) return String(item.url).trim();
-    if (item.item_id) return `https://produto.mercadolivre.com.br/${item.item_id}`;
-    return "#";
+  function normalizeMLBId(rawId) {
+  if (!rawId) return "";
+
+  const id = String(rawId).trim().toUpperCase();
+
+  // Já está no formato MLB-123?
+  if (/^ML[A-Z]-\d+$/.test(id)) return id;
+
+  // Formato MLB123 -> MLB-123
+  if (/^ML[A-Z]\d+$/.test(id)) {
+    return id.replace(/^([A-Z]+)(\d+)$/, "$1-$2");
   }
+
+  // fallback: retorna como veio
+  return id;
+}
+
+function buildMLUrl(item) {
+  // Se o JSON já tiver url completa, usa ela
+  if (item.url && String(item.url).trim()) {
+    return String(item.url).trim();
+  }
+
+  // Normaliza o item_id vindo do Excel
+  if (item.item_id) {
+    const fixedId = normalizeMLBId(item.item_id);
+    return `https://produto.mercadolivre.com.br/${fixedId}`;
+  }
+
+  return "#";
+}
 
   function renderCard(item) {
     const title = escapeHtml(item.title || "Produto");
