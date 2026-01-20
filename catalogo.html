@@ -292,32 +292,42 @@ const IMAGE_BASE_PATH = "/assets/produtos/imagens";
     return ""; // sem imagem encontrada
   }
 
-  function normalizeMLBId(rawId) {
-  if (!rawId) return "";
+function normalizeMLUrl(rawUrl) {
+  if (!rawUrl) return "";
 
+  let url = String(rawUrl).trim();
+
+  // Corrige /MLB123... -> /MLB-123...
+  // (vale para MLB, MLA, MLU, etc.)
+  url = url.replace(/\/(ML[A-Z]{1,2})(\d{6,})(?=($|[?#/]))/gi, "/$1-$2");
+
+  return url;
+}
+
+function normalizeMLId(rawId) {
+  if (!rawId) return "";
   const id = String(rawId).trim().toUpperCase();
 
-  // Já está no formato MLB-123?
-  if (/^ML[A-Z]-\d+$/.test(id)) return id;
+  // MLB-123 (já ok)
+  if (/^ML[A-Z]{1,2}-\d+$/.test(id)) return id;
 
-  // Formato MLB123 -> MLB-123
-  if (/^ML[A-Z]\d+$/.test(id)) {
+  // MLB123 -> MLB-123
+  if (/^ML[A-Z]{1,2}\d+$/.test(id)) {
     return id.replace(/^([A-Z]+)(\d+)$/, "$1-$2");
   }
 
-  // fallback: retorna como veio
   return id;
 }
 
 function buildMLUrl(item) {
-  // Se o JSON já tiver url completa, usa ela
+  // 1) se tiver url, normaliza ela
   if (item.url && String(item.url).trim()) {
-    return String(item.url).trim();
+    return normalizeMLUrl(item.url);
   }
 
-  // Normaliza o item_id vindo do Excel
+  // 2) senão, monta pelo item_id normalizado
   if (item.item_id) {
-    const fixedId = normalizeMLBId(item.item_id);
+    const fixedId = normalizeMLId(item.item_id);
     return `https://produto.mercadolivre.com.br/${fixedId}`;
   }
 
