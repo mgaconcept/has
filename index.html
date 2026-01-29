@@ -23,6 +23,15 @@
     <meta name="description" content="A HAS traz para a região a exclusividade de conhecer e adquirir produtos de Estética Automotiva de ampla variedade e altíssima qualidade. Venha conhecer nosso espaço!" />
   </head>
   <body>
+     <div id="perfilModal" class="perfil-modal" aria-hidden="true">
+  <div class="perfil-box" role="dialog" aria-modal="true" aria-labelledby="perfilTitulo">
+    <h3 id="perfilTitulo">Como você se identifica?</h3>
+    <p class="perfil-sub">Isso ajuda a HAS a te mostrar as melhores recomendações.</p>
+    <button class="perfil-btn" onclick="setPerfil('profissional')">Sou profissional de estética</button>
+    <button class="perfil-btn" onclick="setPerfil('hobbista')">Cuido do meu próprio veículo</button>
+    <button class="perfil-btn neutro" onclick="setPerfil('indefinido')">Prefiro não dizer</button>
+  </div>
+</div>
     <!-- Navegação principal -->
     <nav>
       <div class="logo">
@@ -126,5 +135,44 @@
         });
       });
     </script>
+    <script>
+  const KEY_PERFIL = 'perfilUsuario';
+
+  function setPerfil(tipo) {
+    localStorage.setItem(KEY_PERFIL, tipo);
+
+    // opcional: registrar no GA4 (não é dado pessoal)
+    if (typeof gtag === 'function') {
+      gtag('event', 'perfil_definido', { perfil: tipo });
+    }
+
+    hidePerfilModal();
+  }
+
+  function hidePerfilModal() {
+    const modal = document.getElementById('perfilModal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function showPerfilModal() {
+    const modal = document.getElementById('perfilModal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const perfil = localStorage.getItem(KEY_PERFIL);
+
+    // Se já escolheu uma vez, não aparece mais
+    if (perfil) {
+      hidePerfilModal();
+    } else {
+      showPerfilModal();
+    }
+    });
+  </script>
   </body>
 </html>
