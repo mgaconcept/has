@@ -736,3 +736,52 @@ card img.icon { width: 48px !important; height: 48px !important; }
 
 /* (já corrigimos acima, mas reforçando) */
 .cross { color: #ff4d4d; }
+/* Modal de perfil (primeira visita) */
+.perfil-modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* JS liga quando precisa */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.65);
+  z-index: 9999;
+  padding: 16px;
+}
+
+.perfil-box {
+  width: 100%;
+  max-width: 360px;
+  background: #0b0b0f;
+  border: 1px solid rgba(255,255,0,0.18);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+.perfil-box h3 {
+  margin: 0 0 8px 0;
+}
+
+.perfil-sub {
+  margin: 0 0 14px 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.perfil-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.perfil-btn.neutro {
+  background: transparent;
+  border: 1px solid rgba(148,163,184,0.35);
+  color: #94a3b8;
+  font-size: 14px;
+}
