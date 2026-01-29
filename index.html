@@ -143,6 +143,7 @@
 
     // opcional: registrar no GA4 (não é dado pessoal)
     if (typeof gtag === 'function') {
+      gtag('set', 'user_properties', { perfil: tipo });
       gtag('event', 'perfil_definido', { perfil: tipo });
     }
 
