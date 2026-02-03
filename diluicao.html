@@ -224,13 +224,10 @@
 
       // ===== Calculadora =====
       const $ = (id) => document.getElementById(id);
-
       function parseRatio(raw) {
-        // Exige 1:X
+  // Agora o usuário digita só o X (ex: 60)
         const s = String(raw || "").trim().replace(",", ".");
-        const m = s.match(/^1\s*[:\/]\s*([0-9]+(\.[0-9]+)?)$/);
-        if (!m) return null;
-        const x = Number(m[1]);
+        const x = Number(s);
         if (!Number.isFinite(x) || x <= 0) return null;
         return x;
       }
@@ -298,7 +295,7 @@
 
         clearError();
         $("outMain").textContent = "—";
-        $("outExtra").innerHTML = 'Dica: use o formato <strong>1:60</strong> e escolha L/ml.';
+        $("outExtra").innerHTML = 'Dica: digite apenas o <strong>X</strong> (ex.: 60 para 1:60) e escolha L/ml.';
       }
 
       btnModoAgua.addEventListener("click", () => setMode("agua"));
@@ -307,8 +304,10 @@
       // Presets
       document.querySelectorAll("[data-r]").forEach((chip) => {
         chip.addEventListener("click", () => {
-          $("ratioInput").value = chip.getAttribute("data-r");
-          clearError();
+      const raw = chip.getAttribute("data-r"); // ex: "1:60"
+      const match = raw.match(/[:\/]\s*([0-9]+(\.[0-9]+)?)/);
+      $("ratioInput").value = match ? match[1] : "";
+      clearError();
         });
       });
 
@@ -320,7 +319,7 @@
         if (!x) return showError("Proporção inválida. Use no formato 1:60 (produto:água).");
 
         const waterMl = toMl($("waterValue").value, $("waterUnit").value);
-        if (!waterMl) return showError("Volume de água inválido. Use um número maior que zero.");
+        if (!x) return showError("Proporção inválida. Digite apenas o número do X (ex: 60 para 1:60).");
 
         const prodMl = waterMl / x;
         const totalMl = waterMl + prodMl;
