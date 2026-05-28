@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-59G6HB3WTV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-59G6HB3WTV');
+  </script>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Produtos | HAS - Produtos para Estética Automotiva</title>
+
+    <!-- Mantemos os links de fontes externas apenas para tipografia; podem ser removidos caso se deseje funcionamento 100% offline -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Estilos globais do site -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+    <meta
+      name="description"
+      content="Conheça o catálogo de produtos da HAS para lavagem, acabamento, proteção, higienização e estética automotiva."
+    />
+
+    <!-- Complemento específico da página de catálogo.
+         Mantém as classes originais do site: content, card-grid, card, cta-button.
+         Se quiser, esse bloco pode ser movido depois para css/style.css. -->
+    <style>
+      .catalogo-intro {
+        max-width: 860px;
+        margin: 0 auto 32px;
+        text-align: center;
+        color: #94a3b8;
+        line-height: 1.7;
+      }
+
+      .catalogo-search {
+        max-width: 760px;
+        margin: 0 auto 22px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        padding: 8px 10px 8px 18px;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      }
+
+      .catalogo-search input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #f8fafc;
+        font-family: inherit;
+        font-size: 0.98rem;
+      }
+
+      .catalogo-search input::placeholder {
+        color: #94a3b8;
+      }
+
+      .catalogo-search button {
+        border: 0;
+        border-radius: 999px;
+        padding: 9px 14px;
+        background: rgba(255, 255, 0, 0.12);
+        color: #ffff00;
+        font-family: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .catalogo-search button:hover {
+        background: #ffff00;
+        color: #0f172a;
+      }
+
+      .catalogo-feedback {
+        max-width: 760px;
+        margin: 0 auto 22px;
+        text-align: center;
+        color: #94a3b8;
+        font-size: 0.95rem;
+      }
+
+      .catalogo-empty {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 34px 22px;
+        border-radius: 18px;
+        border: 1px dashed rgba(255, 255, 0, 0.28);
+        color: #94a3b8;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .catalogo-empty strong {
+        display: block;
+        color: #f8fafc;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .catalogo-toolbar {
+        max-width: 1100px;
+        margin: 0 auto 28px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .catalogo-chip {
+        border: 1px solid rgba(255, 255, 0, 0.28);
+        background: rgba(255, 255, 255, 0.03);
+        color: #f8fafc;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-family: inherit;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .catalogo-chip:hover,
+      .catalogo-chip.active {
+        background: #ffff00;
+        color: #0f172a;
+        border-color: #ffff00;
+      }
+
+      .produto-card {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 100%;
+      }
+
+      .produto-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .produto-media {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 18px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 0, 0.18), transparent 34%),
+          linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .produto-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        padding: 16px;
+        display: block;
+      }
+
+      .produto-placeholder {
+        width: 72%;
+        height: 72%;
+        border-radius: 16px;
+        border: 2px dashed rgba(255, 255, 0, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 0, 0.75);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 18px;
+      }
+
+      .produto-tag {
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #0f172a;
+        background: #ffff00;
+      }
+
+      .produto-card h3 {
+        margin-top: 2px;
+      }
+
+      .produto-card p {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .catalogo-final {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .catalogo-final .cta-button {
+        margin-top: 18px;
+        display: inline-block;
+      }
+
+      @media (max-width: 768px) {
+        .catalogo-search {
+          border-radius: 18px;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 12px;
+        }
+
+        .catalogo-search input {
+          min-height: 40px;
+        }
+
+        .catalogo-search button {
+          width: 100%;
+        }
+
+        .catalogo-toolbar {
+          justify-content: flex-start;
+        }
+
+        .catalogo-chip {
+          font-size: 0.86rem;
+          padding: 8px 12px;
+        }
+
+        .produto-media {
+          border-radius: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="perfilModal" class="perfil-modal" aria-hidden="true">
+      <div class="perfil-box" role="dialog" aria-modal="true" aria-labelledby="perfilTitulo">
+        <h3 id="perfilTitulo">Como você se identifica?</h3>
+        <p class="perfil-sub">Isso ajuda a HAS a te mostrar as melhores recomendações.</p>
+
+        <button class="perfil-btn" onclick="setPerfil('profissional')">Sou profissional de estética</button>
+        <button class="perfil-btn" onclick="setPerfil('hobbista')">Cuido do meu próprio veículo</button>
+        <button class="perfil-btn neutro" onclick="setPerfil('indefinido')">Prefiro não dizer</button>
+      </div>
+    </div>
+
+    <nav>
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/img/logo.png" alt="Logo HAS" loading="lazy" />
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="marcas.html">Marcas</a></li>
+        <li><a href="diluicao.html">Calculadora de Diluição</a></li>
+        <li><a href="mercado.html">Loja Online</a></li>
+        <li><a href="nossaempresa.html">Quem Somos</a></li>
+        <li><a href="contato.html">Fale Conosco</a></li>
+      </ul>
+
+      <div class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Catálogo de Produtos HAS</h1>
+        <p>
+          Uma vitrine simples, rápida e organizada para você conhecer soluções de lavagem,
+          acabamento, proteção e cuidado automotivo.
+        </p>
+        <a href="#catalogo" class="cta-button">Ver catálogo</a>
+      </div>
+    </section>
+
+    <!-- Seção Catálogo -->
+    <section class="content" id="catalogo">
+      <h2>Nossos produtos</h2>
+
+      <p class="catalogo-intro">
+        Selecione uma categoria ou explore a linha completa. Os cards abaixo estão com imagens,
+        títulos e descrições provisórias para facilitar a conexão com seu banco de imagens e com o CSS/JS atual do site.
+      </p>
+
+      <div class="catalogo-search" role="search">
+        <input
+          type="search"
+          id="catalogoBusca"
+          placeholder="Buscar por produto, uso ou categoria..."
+          aria-label="Buscar produtos no catálogo"
+          autocomplete="off"
+        />
+        <button type="button" id="limparBusca">Limpar</button>
+      </div>
+
+      <p class="catalogo-feedback" id="catalogoFeedback" aria-live="polite"></p>
+
+      <div class="catalogo-toolbar" aria-label="Filtros do catálogo">
+        <button class="catalogo-chip active" type="button" data-filter="todos">Todos</button>
+        <button class="catalogo-chip" type="button" data-filter="lavagem">Lavagem</button>
+        <button class="catalogo-chip" type="button" data-filter="acabamento">Acabamento</button>
+        <button class="catalogo-chip" type="button" data-filter="protecao">Proteção</button>
+        <button class="catalogo-chip" type="button" data-filter="interior">Interior</button>
+        <button class="catalogo-chip" type="button" data-filter="acessorios">Acessórios</button>
+      </div>
+
+      <div class="card-grid" id="catalogoGrid">
+        <!-- Os cards são renderizados pelo script no final da página -->
+      </div>
+    </section>
+
+    <!-- Seção de apoio, mantendo padrão do index -->
+    <section class="features" id="orientacao">
+      <div class="catalogo-final">
+        <h2>Não sabe qual produto escolher?</h2>
+        <p style="text-align:center; color:#94a3b8;">
+          A HAS te ajuda a montar o kit certo para seu tipo de uso: profissional, hobbista,
+          frota, oficina, agrícola ou cuidado básico em casa.
+        </p>
+        <a href="contato.html" class="cta-button">Falar com a HAS</a>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+      <div style="text-align: center; padding: 24px 0; color: #94a3b8; font-size: 0.875rem;">
+        <p>&copy; 2025 HAS – Produtos para Estética Automotiva</p>
+        <p>Da lavagem à vitrificação, temos a solução! Desenvolvido por MGA Concept.</p>
+        <p>
+          <a href="mailto:hasprodutosautomotivos@gmail.com">hasprodutosautomotivos@gmail.com</a> |
+          <a href="https://www.instagram.com/hasprodutosautomotivos/" target="_blank" rel="noopener">Instagram</a> |
+          <a href="https://api.whatsapp.com/send/?phone=5543984510877&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts globais do site -->
+    <script src="js/script.js"></script>
+    <script src="js/banner_animado.js"></script>
+
+    <!-- Rolagem suave para links internos -->
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    </script>
+
+    <!-- Renderização do catálogo.
+         Troque apenas IMG_BASE_URL e os itens do array para conectar com seu banco. -->
+    <script>
+      const IMG_BASE_URL = 'assets/img/produtos/';
+
+      const produtosCatalogo = [
+        {
+          titulo: 'Shampoo Automotivo Concentrado',
+          descricao: 'Limpeza segura, alto rendimento e espuma densa para a lavagem do dia a dia.',
+          categoria: 'lavagem',
+          imagem: 'produto-01.webp'
+        },
+        {
+          titulo: 'Pré-Lavagem Alcalina',
+          descricao: 'Ajuda a soltar sujeira pesada antes do contato manual com a pintura.',
+          categoria: 'lavagem',
+          imagem: 'produto-02.webp'
+        },
+        {
+          titulo: 'Snow Foam Espumante',
+          descricao: 'Espuma intensa para cobertura uniforme e lavagem mais prática.',
+          categoria: 'lavagem',
+          imagem: 'produto-03.webp'
+        },
+        {
+          titulo: 'Limpador Multiuso APC',
+          descricao: 'Produto versátil para plásticos, borrachas, tecidos e áreas internas.',
+          categoria: 'interior',
+          imagem: 'produto-04.webp'
+        },
+        {
+          titulo: 'Limpa Vidros Automotivo',
+          descricao: 'Remove marcas, gordura e sujeiras leves sem deixar aspecto embaçado.',
+          categoria: 'acabamento',
+          imagem: 'produto-05.webp'
+        },
+        {
+          titulo: 'Descontaminante Ferroso',
+          descricao: 'Indicado para remover partículas metálicas em rodas, pintura e detalhes.',
+          categoria: 'lavagem',
+          imagem: 'produto-06.webp'
+        },
+        {
+          titulo: 'Limpador de Rodas',
+          descricao: 'Solução prática para sujeira de freio, poeira e encardidos de rodas.',
+          categoria: 'lavagem',
+          imagem: 'produto-07.webp'
+        },
+        {
+          titulo: 'Cera Líquida de Brilho',
+          descricao: 'Realça o brilho da pintura e entrega acabamento rápido no pós-lavagem.',
+          categoria: 'acabamento',
+          imagem: 'produto-08.webp'
+        },
+        {
+          titulo: 'Selante Sintético',
+          descricao: 'Proteção durável para pintura com toque liso e repelência à água.',
+          categoria: 'protecao',
+          imagem: 'produto-09.webp'
+        },
+        {
+          titulo: 'Vitrificador de Pintura',
+          descricao: 'Camada de proteção avançada para brilho, resistência e fácil manutenção.',
+          categoria: 'protecao',
+          imagem: 'produto-10.webp'
+        },
+        {
+          titulo: 'Pretinho para Pneus',
+          descricao: 'Acabamento renovado para pneus com visual limpo e destacado.',
+          categoria: 'acabamento',
+          imagem: 'produto-11.webp'
+        },
+        {
+          titulo: 'Hidratante de Couro',
+          descricao: 'Ajuda a preservar bancos e peças em couro com toque natural.',
+          categoria: 'interior',
+          imagem: 'produto-12.webp'
+        },
+        {
+          titulo: 'Condicionador de Plásticos',
+          descricao: 'Renova o visual de plásticos internos e externos com acabamento uniforme.',
+          categoria: 'interior',
+          imagem: 'produto-13.webp'
+        },
+        {
+          titulo: 'Toalha de Microfibra',
+          descricao: 'Alta absorção e toque macio para secagem, acabamento e manutenção.',
+          categoria: 'acessorios',
+          imagem: 'produto-14.webp'
+        },
+        {
+          titulo: 'Pincel de Detalhamento',
+          descricao: 'Ideal para emblemas, grades, cantos, saídas de ar e áreas delicadas.',
+          categoria: 'acessorios',
+          imagem: 'produto-15.webp'
+        },
+        {
+          titulo: 'Pulverizador Manual',
+          descricao: 'Aplicação prática e econômica de produtos diluídos ou prontos para uso.',
+          categoria: 'acessorios',
+          imagem: 'produto-16.webp'
+        }
+      ];
+
+      const categoriaNome = {
+        lavagem: 'Lavagem',
+        acabamento: 'Acabamento',
+        protecao: 'Proteção',
+        interior: 'Interior',
+        acessorios: 'Acessórios'
+      };
+
+      let filtroAtual = 'todos';
+      let buscaAtual = '';
+
+      function normalizarTexto(texto) {
+        return String(texto || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+      }
+
+      function produtoCombinaComBusca(produto, termoBusca) {
+        if (!termoBusca) return true;
+
+        const categoriaLegivel = categoriaNome[produto.categoria] || produto.categoria;
+
+        const textoPesquisavel = normalizarTexto([
+          produto.titulo,
+          produto.descricao,
+          produto.categoria,
+          categoriaLegivel
+        ].join(' '));
+
+        return textoPesquisavel.includes(termoBusca);
+      }
+
+      function criarCardProduto(produto, index) {
+        const card = document.createElement('div');
+        card.className = 'card produto-card';
+        card.dataset.categoria = produto.categoria;
+        card.style.cursor = 'pointer';
+
+        card.addEventListener('click', () => {
+          const texto = encodeURIComponent(`Olá! Quero saber mais sobre: ${produto.titulo}`);
+          window.location.href = `https://api.whatsapp.com/send/?phone=5543984510877&text=${texto}&type=phone_number&app_absent=0`;
+        });
+
+        const media = document.createElement('div');
+        media.className = 'produto-media';
+
+        const placeholder = document.createElement('div');
+        placeholder.className = 'produto-placeholder';
+        placeholder.textContent = `Produto ${String(index + 1).padStart(2, '0')}`;
+
+        const img = document.createElement('img');
+        img.src = `${IMG_BASE_URL}${produto.imagem}`;
+        img.alt = produto.titulo;
+        img.loading = 'lazy';
+
+        img.addEventListener('load', () => {
+          placeholder.style.display = 'none';
+        });
+
+        img.addEventListener('error', () => {
+          img.style.display = 'none';
+          placeholder.style.display = 'flex';
+        });
+
+        media.appendChild(placeholder);
+        media.appendChild(img);
+
+        const tag = document.createElement('span');
+        tag.className = 'produto-tag';
+        tag.textContent = categoriaNome[produto.categoria] || 'Produto';
+
+        const titulo = document.createElement('h3');
+        titulo.textContent = produto.titulo;
+
+        const descricao = document.createElement('p');
+        descricao.textContent = produto.descricao;
+
+        card.appendChild(media);
+        card.appendChild(tag);
+        card.appendChild(titulo);
+        card.appendChild(descricao);
+
+        return card;
+      }
+
+      function renderizarCatalogo() {
+        const grid = document.getElementById('catalogoGrid');
+        const feedback = document.getElementById('catalogoFeedback');
+        if (!grid) return;
+
+        const termoBusca = normalizarTexto(buscaAtual);
+
+        const produtosFiltrados = produtosCatalogo.filter(produto => {
+          const combinaCategoria = filtroAtual === 'todos' || produto.categoria === filtroAtual;
+          const combinaBusca = produtoCombinaComBusca(produto, termoBusca);
+
+          return combinaCategoria && combinaBusca;
+        });
+
+        grid.innerHTML = '';
+
+        produtosFiltrados.forEach((produto, index) => {
+          grid.appendChild(criarCardProduto(produto, index));
+        });
+
+        if (feedback) {
+          const total = produtosFiltrados.length;
+          const categoriaTexto = filtroAtual === 'todos'
+            ? 'todas as categorias'
+            : `categoria ${categoriaNome[filtroAtual] || filtroAtual}`;
+
+          if (termoBusca) {
+            feedback.textContent = `${total} produto(s) encontrado(s) para "${buscaAtual}" em ${categoriaTexto}.`;
+          } else {
+            feedback.textContent = `${total} produto(s) exibido(s) em ${categoriaTexto}.`;
+          }
+        }
+
+        if (produtosFiltrados.length === 0) {
+          const empty = document.createElement('div');
+          empty.className = 'catalogo-empty';
+          empty.innerHTML = `
+            <strong>Nenhum produto encontrado</strong>
+            Tente buscar por outro nome, tipo de uso ou categoria. Exemplo: shampoo, roda, couro, proteção, microfibra.
+          `;
+          grid.appendChild(empty);
+        }
+      }
+
+      document.querySelectorAll('.catalogo-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          document.querySelectorAll('.catalogo-chip').forEach(item => item.classList.remove('active'));
+          chip.classList.add('active');
+          filtroAtual = chip.dataset.filter || 'todos';
+          renderizarCatalogo();
+        });
+      });
+
+      const campoBusca = document.getElementById('catalogoBusca');
+      const botaoLimpar = document.getElementById('limparBusca');
+
+      if (campoBusca) {
+        campoBusca.addEventListener('input', () => {
+          buscaAtual = campoBusca.value;
+          renderizarCatalogo();
+        });
+      }
+
+      if (botaoLimpar) {
+        botaoLimpar.addEventListener('click', () => {
+          buscaAtual = '';
+          if (campoBusca) {
+            campoBusca.value = '';
+            campoBusca.focus();
+          }
+          renderizarCatalogo();
+        });
+      }
+
+      renderizarCatalogo();
+    </script>
+
+    <!-- Modal de perfil herdado do index -->
+    <script>
+      const KEY_PERFIL = 'perfilUsuario';
+
+      function setPerfil(tipo) {
+        localStorage.setItem(KEY_PERFIL, tipo);
+
+        // opcional: registrar no GA4, sem dado pessoal
+        if (typeof gtag === 'function') {
+          gtag('event', 'perfil_definido', { perfil: tipo });
+        }
+
+        hidePerfilModal();
+      }
+
+      function hidePerfilModal() {
+        const modal = document.getElementById('perfilModal');
+        if (!modal) return;
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      function showPerfilModal() {
+        const modal = document.getElementById('perfilModal');
+        if (!modal) return;
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const perfil = localStorage.getItem(KEY_PERFIL);
+
+        // Se já escolheu uma vez, não aparece mais
+        if (perfil) {
+          hidePerfilModal();
+        } else {
+          showPerfilModal();
+        }
+      });
+    </script>
+  </body>
+</html>
