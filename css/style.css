@@ -722,6 +722,28 @@ section.content[aria-labelledby="titulo-marcas"] .card-grid .card.ratio-1x1 { as
 section.content[aria-labelledby="titulo-marcas"] .card-grid .card.ratio-4x3 { aspect-ratio: 4 / 3; }
 section.content[aria-labelledby="titulo-marcas"] .card-grid .card.ratio-16x9 { aspect-ratio: 16 / 9; }
 
+/* =========================================
+   CARDS - ESTÉTICAS PARCEIRAS
+   ========================================= */
+
+.content.parceiros .card-grid .card {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: transparent;
+}
+
+.content.parceiros .card-grid .card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    object-fit: cover;
+    object-position: center;
+}
 
 /* --- ICONES: ajustes finais --- */
 
